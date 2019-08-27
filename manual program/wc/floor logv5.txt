@@ -1,0 +1,1 @@
+Floor 3:	 bon: +2%	 time: -2%	 mod: -2%	Floor le	 bon: +12%	 time: -12%	 mod: -12%	Floor 4:	 bon: +2%	 time: -2%	 mod: -2%	Floor 2:	 bon: -17%	 time: -17%	 mod: -17%	Floor 3:	 bon: -17%	 time: -17%	 mod: -17%	Floor 4:	 bon: - 1 2 %	 time: 0 0 : 0 1 : 0 4	 mod: - 1 %	
