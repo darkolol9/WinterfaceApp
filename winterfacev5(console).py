@@ -60,9 +60,9 @@ while 1:
 	#if max_val > max_detect_allowed:
 	#	print("too different! undetected!, difference is ",max_val - max_detect_allowed , '\n')
 
-	if  accur > 130 and accur < 132:
+	if  accur < 136:
 		print('detected winterface!  \n')
-		print(max_val/10000000)
+		print('with threshold of :',max_val/10000000)
 		cv2.imwrite('resources/scrnshotforcompare.png',screen_np)
 		
 		#now we need to crop the parts we need and run text detection
