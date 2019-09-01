@@ -33,6 +33,7 @@ max_detect_allowed = 1319208576.0
 threshold = 0.8
 
 tmpl = cv2.imread("resources/newtmp.png")  #get the template ready as cv2
+large = cv2.imread("resources/large.png")
 #test run
 
 
@@ -42,6 +43,7 @@ print('running!\n')
 winsound.Beep(2500,600)
 
 while 1:
+	large_flag =  False
 	TIME.sleep(2)
 	
 
@@ -51,19 +53,27 @@ while 1:
 	screen_np = cv2.cvtColor(screen_np, cv2.COLOR_BGR2RGB)
 
 
-	#cv2.imwrite('resources/scrnshotforcompare.png',screen_np)
+	cv2.imwrite('resources/scrnshotforcompare.png',screen_np)
 
-	res = cv2.matchTemplate(screen_np,tmpl,cv2.TM_CCORR) #run the image detection on screenshot
-	min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)  #get the location and accuracy val
-	accur = max_val/10000000
+	res = cv2.matchTemplate(screen_np,tmpl,cv2.TM_CCORR_NORMED) 
+	res2 = cv2.matchTemplate(screen_np,large,cv2.TM_CCORR_NORMED)
+	#run the image detection on screenshot
+	min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res) 
+	min_val1, max_val1, min_loc1, max_loc1 = cv2.minMaxLoc(res2) #get the location and accuracy val
+	
 	#print(accur)
 	#if max_val > max_detect_allowed:
 	#	print("too different! undetected!, difference is ",max_val - max_detect_allowed , '\n')
 
-	if  accur < 136:
+	if   max_val > 0.8 :
 		print('detected winterface!  \n')
-		print('with threshold of :',max_val/10000000)
+		print('with threshold of: ',max_val)
 		cv2.imwrite('resources/scrnshotforcompare.png',screen_np)
+
+		if max_val1 >= 0.99:
+			large_flag = True
+			print('large floor')
+
 		
 		#now we need to crop the parts we need and run text detection
 
@@ -116,7 +126,12 @@ while 1:
 		if blank_line == False:
 			winsound.Beep(2500,1500)
 			log = open("log.txt",'a+')
+
+			if large_flag:
+				line += '\t LARGE'
+
 			log.write(line)
+
 			log.close()
 			blank_line = True
 			TIME.sleep(10)
