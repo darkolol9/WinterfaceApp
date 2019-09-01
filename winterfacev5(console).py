@@ -60,7 +60,7 @@ while 1:
 	#if max_val > max_detect_allowed:
 	#	print("too different! undetected!, difference is ",max_val - max_detect_allowed , '\n')
 
-	if  accur > 127 and accur < 134:
+	if  accur > 130 and accur < 132:
 		print('detected winterface!  \n')
 		print(max_val/10000000)
 		cv2.imwrite('resources/scrnshotforcompare.png',screen_np)
