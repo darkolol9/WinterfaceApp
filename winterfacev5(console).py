@@ -30,11 +30,14 @@ five = [cv2.imread("resources/bitmaps/5.bmp"),'5',0]
 bitmaps = [zero,one,colon,five,minus,precent,two,three,four,six,seven,eight,nine,plus]
 
 max_detect_allowed = 1319208576.0
-threshold = 0.8
+threshold = 0.9
 
 tmpl = cv2.imread("resources/newtmp.png")  #get the template ready as cv2
 large = cv2.imread("resources/large.png")
+leech = cv2.imread("resources/leech.png")
 #test run
+
+category = {1:'4s',2:'trio',3:'duo',4:'solo',0:'1:1'}
 
 
 
@@ -45,6 +48,7 @@ winsound.Beep(2500,600)
 while 1:
 	large_flag =  False
 	TIME.sleep(2)
+	leeches = 0
 	
 
 	screen = ImageGrab.grab() #screenshot
@@ -57,6 +61,10 @@ while 1:
 
 	res = cv2.matchTemplate(screen_np,tmpl,cv2.TM_CCORR_NORMED) 
 	res2 = cv2.matchTemplate(screen_np,large,cv2.TM_CCORR_NORMED)
+	res3 = cv2.matchTemplate(screen_np,leech,cv2.TM_CCORR_NORMED)
+
+	loc = np.where(res3 >= threshold)
+
 	#run the image detection on screenshot
 	min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res) 
 	min_val1, max_val1, min_loc1, max_loc1 = cv2.minMaxLoc(res2) #get the location and accuracy val
@@ -69,6 +77,11 @@ while 1:
 		print('detected winterface!  \n')
 		print('with threshold of: ',max_val)
 		cv2.imwrite('resources/scrnshotforcompare.png',screen_np)
+
+		for pt in zip(*loc[::-1]):
+			leeches = leeches + 1
+
+
 
 		if max_val1 >= 0.99:
 			large_flag = True
@@ -115,7 +128,7 @@ while 1:
 		
 		#formatted_time = timeformt[0] +timeformt[1] + ":" + timeformt[2]+timeformt[3] + ":" +timeformt[4]+timeformt[5] 	
 		if bon :
-			line =  '[' + winterface[0] + '] ' + '[' +  winterface[1]+ '] ' + '[' + winterface[2] + '] ' +'[' + winterface[3]+ ']\n'
+			line =  '[' + winterface[0] + '] ' + '[' +  winterface[1]+ '] ' + '[' + winterface[2] + '] ' +'[' + winterface[3]+ ']'
 		blank_line = True
 
 		if "Floor" in floor:
@@ -128,7 +141,9 @@ while 1:
 			log = open("log.txt",'a+')
 
 			if large_flag:
-				line += '\t LARGE'
+				line += '\t LARGE ' + category[leeches] + '\n'
+			else :
+				line += '\t MED/SMALL ' + category[leeches] + '\n'	
 
 			log.write(line)
 
