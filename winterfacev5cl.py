@@ -11,7 +11,6 @@ import winsound
 import OCR
 
 
-
 zero = [cv2.imread("resources/bitmaps/0.bmp"),'0',0]
 nine = [cv2.imread("resources/bitmaps/9.bmp"),'9',0]
 seven = [cv2.imread("resources/bitmaps/7.bmp"),'7',0]
@@ -32,14 +31,11 @@ bitmaps = [zero,one,colon,five,minus,precent,two,three,four,six,seven,eight,nine
 max_detect_allowed = 1319208576.0
 threshold = 0.9
 
-tmpl = cv2.imread("resources/newtmp.png")  #get the template ready as cv2
-large = cv2.imread("resources/large.png")
-leech = cv2.imread("resources/leech.png")
-#test run
+tmpl = cv2.imread("resources/newtmp.png",0)  #get the template ready as cv2
+large = cv2.imread("resources/large.png",0)
+
 
 category = {1:'4s',2:'trio',3:'duo',4:'solo',0:'1:1'}
-
-
 
 
 print('running!\n')
@@ -53,25 +49,19 @@ while 1:
 
 	screen = ImageGrab.grab() #screenshot
 	screen_np = np.array(screen) #translate it to a format cv2 understands
-	#screen_np = cv2.bitwise_not(screen_np) #invert colors before comparing
-	screen_np = cv2.cvtColor(screen_np, cv2.COLOR_BGR2RGB)
 
-
-	cv2.imwrite('resources/scrnshotforcompare.png',screen_np)
+	screen_np = cv2.cvtColor(screen_np, cv2.COLOR_BGR2GRAY)
 
 	res = cv2.matchTemplate(screen_np,tmpl,cv2.TM_CCORR_NORMED) 
 	res2 = cv2.matchTemplate(screen_np,large,cv2.TM_CCORR_NORMED)
-	res3 = cv2.matchTemplate(screen_np,leech,cv2.TM_CCORR_NORMED)
+	
 
-	loc = np.where(res3 >= threshold)
+	loc = np.where(res >= threshold)
 
 	#run the image detection on screenshot
 	min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res) 
 	min_val1, max_val1, min_loc1, max_loc1 = cv2.minMaxLoc(res2) #get the location and accuracy val
 	
-	#print(accur)
-	#if max_val > max_detect_allowed:
-	#	print("too different! undetected!, difference is ",max_val - max_detect_allowed , '\n')
 
 	if   max_val > 0.8 :
 		print('detected winterface!  \n')
@@ -99,20 +89,14 @@ while 1:
 		image_np2 = np.array(bon_num)
 		image_np3 = np.array(time_num)
 		image_np4 = np.array(mod_num)
-
+		
 		inv_flr = cv2.bitwise_not(image_np)
 		inv_bon = cv2.bitwise_not(image_np2)
 		inv_time = cv2.bitwise_not(image_np3)
 		inv_mod = cv2.bitwise_not(image_np4)
 
 
-
-		cv2.imwrite('resources/flr.png',inv_flr)
-		cv2.imwrite('resources/bon.png',inv_bon)
-		cv2.imwrite('resources/time.png',inv_time)
-		cv2.imwrite('resources/mod.png',inv_mod)
-
-		floor = pytesseract.image_to_string('resources/flr.png')
+		floor = OCR.apply_ocr(bitmaps,inv_flr)
 		bon =  OCR.apply_ocr(bitmaps,inv_bon)
 		time = OCR.apply_ocr(bitmaps,inv_time)
 		mod = OCR.apply_ocr(bitmaps,inv_mod)
@@ -121,17 +105,14 @@ while 1:
 		#bon[0] = '+'
 		winterface = [floor,bon,time,mod]
 		#print(winterface)
-		
-
-
-		
+			
 		
 		#formatted_time = timeformt[0] +timeformt[1] + ":" + timeformt[2]+timeformt[3] + ":" +timeformt[4]+timeformt[5] 	
 		if bon :
 			line =  '[' + winterface[0] + '] ' + '[' +  winterface[1]+ '] ' + '[' + winterface[2] + '] ' +'[' + winterface[3]+ ']'
 		blank_line = True
 
-		if "Floor" in floor:
+		if "FOUND" in floor:
 			blank_line = False
 			print('successfully captured a floor winterface!')
 			print(winterface)

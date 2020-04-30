@@ -56,17 +56,19 @@ def apply_ocr(bitmaps,image):
 	string = string.join(string_list)
 	striped = string.strip()
 
-	if found_bits:
+	if len(found_bits) > 0:
 		return striped
+	else:
+		return "NOT FOUND"
 
 
 
 
 
-test_img = cv2.imread("resources/time.png")
+#test_img = cv2.imread("resources/time.png")
 
 
-string = apply_ocr(bitmaps,test_img)
+#string = apply_ocr(bitmaps,test_img)
 #print(string)
 #input('click any key to continue')
 

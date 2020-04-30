@@ -32,7 +32,8 @@ bitmaps = [zero,one,colon,five,minus,precent,two,three,four,six,seven,eight,nine
 max_detect_allowed = 1319208576.0
 threshold = 0.8
 
-tmpl = cv2.imread("resources/newtmp.png")  #get the template ready as cv2
+tmpl = cv2.imread("resources/newtmp.png",0) 
+ #get the template ready as cv2
 #test run
 
 
@@ -47,8 +48,9 @@ while 1:
 
 	screen = ImageGrab.grab() #screenshot
 	screen_np = np.array(screen) #translate it to a format cv2 understands
+	
 	#screen_np = cv2.bitwise_not(screen_np) #invert colors before comparing
-	screen_np = cv2.cvtColor(screen_np, cv2.COLOR_BGR2RGB)
+	screen_np = cv2.cvtColor(screen_np, cv2.COLOR_BGR2GRAY)
 
 
 	#cv2.imwrite('resources/scrnshotforcompare.png',screen_np)
