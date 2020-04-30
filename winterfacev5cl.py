@@ -9,6 +9,7 @@ import cv2
 import numpy as np
 import winsound
 import OCR
+from plyer import notification
 
 
 zero = [cv2.imread("resources/bitmaps/0.bmp"),'0',0]
@@ -130,6 +131,11 @@ while 1:
 
 			log.close()
 			blank_line = True
+			notification.notify(
+			title='Winterface found!',
+			message='logged floor...',
+			app_name='Winterface',
+			)
 			TIME.sleep(10)
 
 
