@@ -92,12 +92,7 @@ while 1:
 		image_np3 = np.array(time_num)
 		image_np4 = np.array(mod_num)
 
-		
-		
-		inv_flr = cv2.bitwise_not(image_np)
-		inv_bon = cv2.bitwise_not(image_np2)
-		inv_time = cv2.bitwise_not(image_np3)
-		inv_mod = cv2.bitwise_not(image_np4)
+	
 
 		inv_flr = cv2.cvtColor(image_np,cv2.COLOR_BGR2GRAY)
 		inv_bon = cv2.cvtColor(image_np2,cv2.COLOR_BGR2GRAY)
