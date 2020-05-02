@@ -26,6 +26,7 @@ precent = [cv2.imread("resources/bitmaps/%.bmp"),'%',0]
 one = [cv2.imread("resources/bitmaps/1.bmp"),'1',0]
 colon = [cv2.imread("resources/bitmaps/colon.bmp"),':',0]
 five = [cv2.imread("resources/bitmaps/5.bmp"),'5',0]
+#floor = [cv2.imread("resources/bitmaps/floor.png",0),'Floor - ',0]
 
 bitmaps = [zero,one,colon,five,minus,precent,two,three,four,six,seven,eight,nine,plus]
 
