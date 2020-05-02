@@ -121,7 +121,7 @@ while 1:
 			line =  '[' + winterface[0] + '] ' + '[' +  winterface[1]+ '] ' + '[' + winterface[2] + '] ' +'[' + winterface[3]+ ']'
 		blank_line = True
 
-		if "FOUND" in floor:
+		if "floor" in floor:
 			blank_line = False
 			print('successfully captured a floor winterface!')
 			print(winterface)
