@@ -27,7 +27,7 @@ def detect_bitmaps(bitmap,image,found_bits):
 	w, h = bitmap[0].shape[::-1]
 
 	res = cv2.matchTemplate(image,bitmap[0],cv2.TM_CCOEFF_NORMED)
-	threshold = 0.9
+	threshold = 0.7
 	loc = np.where( res >= threshold)
 	for pt in zip(*loc[::-1]):
 	    #cv2.rectangle(image, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
