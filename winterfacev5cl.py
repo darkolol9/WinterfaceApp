@@ -12,23 +12,23 @@ import OCR
 from plyer import notification
 
 
-zero = [cv2.imread("resources/bitmaps/0.bmp"),'0',0]
-nine = [cv2.imread("resources/bitmaps/9.bmp"),'9',0]
-seven = [cv2.imread("resources/bitmaps/7.bmp"),'7',0]
-plus = [cv2.imread("resources/bitmaps/+.bmp"),'+',0]
-six = [cv2.imread("resources/bitmaps/6.bmp"),'6',0]
-two = [cv2.imread("resources/bitmaps/2.bmp"),'2',0]
-eight = [cv2.imread("resources/bitmaps/8.bmp"),'8',0]
-three = [cv2.imread("resources/bitmaps/3.bmp"),'3',0]
-four = [cv2.imread("resources/bitmaps/4.bmp"),'4',0]
-minus = [cv2.imread("resources/bitmaps/-.bmp"),'-',0]
-precent = [cv2.imread("resources/bitmaps/%.bmp"),'%',0]
-one = [cv2.imread("resources/bitmaps/1.bmp"),'1',0]
-colon = [cv2.imread("resources/bitmaps/colon.bmp"),':',0]
-five = [cv2.imread("resources/bitmaps/5.bmp"),'5',0]
-#floor = [cv2.imread("resources/bitmaps/floor.png",0),'Floor - ',0]
+zero = [cv2.imread("resources/bitmaps/0.bmp",0),'0',0]
+nine = [cv2.imread("resources/bitmaps/9.bmp",0),'9',0]
+seven = [cv2.imread("resources/bitmaps/7.bmp",0),'7',0]
+plus = [cv2.imread("resources/bitmaps/+.bmp",0),'+',0]
+six = [cv2.imread("resources/bitmaps/6.bmp",0),'6',0]
+two = [cv2.imread("resources/bitmaps/2.bmp",0),'2',0]
+eight = [cv2.imread("resources/bitmaps/8.bmp",0),'8',0]
+three = [cv2.imread("resources/bitmaps/3.bmp",0),'3',0]
+four = [cv2.imread("resources/bitmaps/4.bmp",0),'4',0]
+minus = [cv2.imread("resources/bitmaps/-.bmp",0),'-',0]
+precent = [cv2.imread("resources/bitmaps/%.bmp",0),'%',0]
+one = [cv2.imread("resources/bitmaps/1.bmp",0),'1',0]
+colon = [cv2.imread("resources/bitmaps/colon.bmp",0),':',0]
+five = [cv2.imread("resources/bitmaps/5.bmp",0),'5',0]
+floor = [cv2.imread("resources/bitmaps/floor.png",0),'Floor - ',0]
 
-bitmaps = [zero,one,colon,five,minus,precent,two,three,four,six,seven,eight,nine,plus]
+bitmaps = [zero,one,floor,colon,five,minus,precent,two,three,four,six,seven,eight,nine,plus]
 
 max_detect_allowed = 1319208576.0
 threshold = 0.9

@@ -15,7 +15,7 @@ four = [cv2.imread("resources/bitmaps/4.bmp"),'4',0]
 minus = [cv2.imread("resources/bitmaps/-.bmp"),'-',0]
 precent = [cv2.imread("resources/bitmaps/%.bmp"),'%',0]
 one = [cv2.imread("resources/bitmaps/1.bmp"),'1',0]
-colon = [cv2.imread("resources/bitmaps/colon.bmp"),':',0]
+colon = [cv2.imread("resources/bitmaps/colon.bmp",0),':',0]
 five = [cv2.imread("resources/bitmaps/5.bmp"),'5',0]
 
 bitmaps = [zero,one,colon,five,minus,precent,two,three,four,six,seven,eight,nine,plus]
@@ -23,7 +23,7 @@ bitmaps = [zero,one,colon,five,minus,precent,two,three,four,six,seven,eight,nine
 
 
 def detect_bitmaps(bitmap,image,found_bits):
-	w, h, _ = bitmap[0].shape[::-1]
+	w, h,  = bitmap[0].shape[::-1]
 
 	res = cv2.matchTemplate(image,bitmap[0],cv2.TM_CCOEFF_NORMED)
 	threshold = 0.9
