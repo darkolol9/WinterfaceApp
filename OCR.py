@@ -18,8 +18,18 @@ one = [cv2.imread("resources/bitmaps/1.bmp",0),'1',0]
 colon = [cv2.imread("resources/bitmaps/colon.bmp",0),':',0]
 five = [cv2.imread("resources/bitmaps/5.bmp",0),'5',0]
 floor = [cv2.imread("resources/bitmaps/floor.png",0),'Floor - ',0]
+b0 = [cv2.imread("resources/bitmaps/0_.png",0),'0',0]
+b1 = [cv2.imread("resources/bitmaps/1_.png",0),'1',0]
+b2 = [cv2.imread("resources/bitmaps/2_.png",0),'2',0]
+b3 = [cv2.imread("resources/bitmaps/3_.png",0),'3',0]
+b4 = [cv2.imread("resources/bitmaps/4_.png",0),'4',0]
+b5 = [cv2.imread("resources/bitmaps/5_.png",0),'5',0]
+b6 = [cv2.imread("resources/bitmaps/6_.png",0),'6',0]
+b7 = [cv2.imread("resources/bitmaps/7_.png",0),'7',0]
+b8 = [cv2.imread("resources/bitmaps/8_.png",0),'8',0]
+b9 = [cv2.imread("resources/bitmaps/9_.png",0),'9',0]
 
-bitmaps = [zero,one,floor,colon,five,minus,precent,two,three,four,six,seven,eight,nine,plus]
+bitmaps = [zero,one,floor,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,colon,five,minus,precent,two,three,four,six,seven,eight,nine,plus]
 
 
 

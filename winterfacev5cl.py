@@ -27,8 +27,18 @@ one = [cv2.imread("resources/bitmaps/1.bmp",0),'1',0]
 colon = [cv2.imread("resources/bitmaps/colon.bmp",0),':',0]
 five = [cv2.imread("resources/bitmaps/5.bmp",0),'5',0]
 floor = [cv2.imread("resources/bitmaps/floor.png",0),'Floor - ',0]
+b0 = [cv2.imread("resources/bitmaps/0_.png",0),'0',0]
+b1 = [cv2.imread("resources/bitmaps/1_.png",0),'1',0]
+b2 = [cv2.imread("resources/bitmaps/2_.png",0),'2',0]
+b3 = [cv2.imread("resources/bitmaps/3_.png",0),'3',0]
+b4 = [cv2.imread("resources/bitmaps/4_.png",0),'4',0]
+b5 = [cv2.imread("resources/bitmaps/5_.png",0),'5',0]
+b6 = [cv2.imread("resources/bitmaps/6_.png",0),'6',0]
+b7 = [cv2.imread("resources/bitmaps/7_.png",0),'7',0]
+b8 = [cv2.imread("resources/bitmaps/8_.png",0),'8',0]
+b9 = [cv2.imread("resources/bitmaps/9_.png",0),'9',0]
 
-bitmaps = [zero,one,floor,colon,five,minus,precent,two,three,four,six,seven,eight,nine,plus]
+bitmaps = [zero,one,floor,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,colon,five,minus,precent,two,three,four,six,seven,eight,nine,plus]
 
 max_detect_allowed = 1319208576.0
 threshold = 0.9
@@ -67,8 +77,8 @@ while 1:
 
 	if   max_val > 0.8 :
 		print('detected winterface!  \n')
-		print('with threshold of: ',max_val)
-		cv2.imwrite('resources/scrnshotforcompare.png',screen_np)
+		#print('with threshold of: ',max_val)
+		#cv2.imwrite('resources/scrnshotforcompare.png',screen_np)
 
 		for pt in zip(*loc[::-1]):
 			leeches = leeches + 1
@@ -77,7 +87,7 @@ while 1:
 
 		if max_val1 >= 0.99:
 			large_flag = True
-			print('large floor')
+			#print('large floor')
 
 		
 		#now we need to crop the parts we need and run text detection
@@ -94,7 +104,8 @@ while 1:
 
 	
 
-		inv_flr = cv2.cvtColor(image_np,cv2.COLOR_BGR2GRAY)
+		inv_flr =  cv2.cvtColor(image_np,cv2.COLOR_RGB2BGR)
+		inv_flr = cv2.cvtColor(inv_flr,cv2.COLOR_BGR2GRAY)
 		inv_bon = cv2.cvtColor(image_np2,cv2.COLOR_BGR2GRAY)
 		inv_time = cv2.cvtColor(image_np3,cv2.COLOR_BGR2GRAY)
 		inv_mod = cv2.cvtColor(image_np4,cv2.COLOR_BGR2GRAY)
@@ -104,7 +115,7 @@ while 1:
 		bon =  OCR.apply_ocr(bitmaps,inv_bon)
 		time = OCR.apply_ocr(bitmaps,inv_time)
 		mod = OCR.apply_ocr(bitmaps,inv_mod)
-		print(floor)
+		
 
 		#bon[0] = '+'
 		winterface = [floor,bon,time,mod]
@@ -113,8 +124,10 @@ while 1:
 		
 		#formatted_time = timeformt[0] +timeformt[1] + ":" + timeformt[2]+timeformt[3] + ":" +timeformt[4]+timeformt[5] 	
 		if bon :
-			line =  '[' + winterface[0] + '] ' + '[' +  winterface[1]+ '] ' + '[' + winterface[2] + '] ' +'[' + winterface[3]+ ']'
+			line =  '[' + winterface[0] + '] ' + '[ bon : ' +  winterface[1]+ '] ' + '[ time : ' + winterface[2] + '] ' +'[ mod : ' + winterface[3]+ ']'
 		blank_line = True
+
+		
 
 		if "Floor" in floor:
 			blank_line = False
